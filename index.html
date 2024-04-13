@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Dom Selecctor NodeList and HTMLCollection</title>
+    <style>
+        .bg-black { 
+            background-color: #212121;
+            color: #fff;
+        }
+    </style>
+</head>
+<body class="bg-black">
+    <div >
+        <h1 id="title" class="heading">DOM Learning <span style="display: none;">Test Text</span></h1>
+        <h2>Lorem ipsum dolor sit amet 1.</h2>
+        <h2>Lorem ipsum dolor sit amet 2.</h2>
+        <h2>Lorem ipsum dolor sit amet 3.</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo, harum?</p>
+        <input type="password">
+
+        <ul>
+            <li class="list-item">One</li>
+            <li class="list-item">Two</li>
+            <li class="list-item">Three</li>
+            <li class="list-item">Four</li>
+        </ul>
+    </div>
+</body>
+</html>
+
+
+<!-- 
+  💫. Now open this page on live server and go to console.
+    And Write 
+
+   1. ⬜ document.getElementById('title')
+
+    you will get  
+
+    <h1 id="title" class="heading">DOM Learning</h1>
+
+   2. ⬜ document.getElementById('title').id
+
+    you will get
+
+    'title'
+   
+   3.⬜ document.getElementById('title').class
+
+   you will get
+
+   undefined
+
+   4.⬜ document.getElementById('title').className
+
+    you will get
+
+    'heading'
+
+    5. ⬜ document.getElementById('title').getAttribute
+    
+    you will get
+
+    ƒ getAttribute() { [native code] }
+
+    6. ⬜ document.getElementById('title').getAttribute('id')
+    
+    you will get
+
+   'title'
+   
+   7. ⬜ document.getElementById('title').getAttribute('class')
+
+    you will get
+
+    'heading'
+
+    8. ⬜ document.getElementById('title').setAttribute('class', 'test')
+    
+    you will get
+
+    undefined,  But when you check element it will overwrite 
+
+    <h1 id="title" class="test">DOM Learning</h1>
+
+
+    9. ⬜ document.getElementById('title').setAttribute('class', 'test heading')
+
+    you will get
+
+     undefined,  But when you check element it will overwrite
+
+     <h1 id="title" class="test heading">DOM Learning</h1>
+
+     💫. Now change Style using getElementById() 
+
+     First create a variable called title.
+
+     1. ⬜ const title= document.getElementById('title')
+
+     you will get
+
+     undefined
+
+     2. ⬜ title.style.backgroundColor = 'blue'
+
+     you will get backgroundColor
+
+     'blue'
+
+     3.  ⬜ title.style.padding = '15px'
+
+     you will get padding
+
+     '15px'
+
+     4.  ⬜ title.style.borderRadius = '15px'
+
+     you will get borderRadius
+
+     '15px'
+
+
+     💫. Now difference between innerText and innerContent and innerHtml
+
+   1. "innerText" will only return the visible text content, excluding the hidden text
+
+    ⬜ title.innerText
+
+    you will get
+
+    'DOM Learning'
+
+    2. "textContent" will return the complete text content, including the hidden text.
+
+    ⬜ title.textContent
+
+    you will get
+
+    'DOM Learning Test Text'
+
+    3. "innerHtml" returns all text, including html tags, that is contained by an element.
+
+    ⬜ title.innerHtml
+
+    you will get
+
+    'DOM Learning <span style="display: none;">Test Text</span>'
+
+    💫.Now we will see querySelector and querySelectorAll
+
+    1. querySelector is used to select a single element from the DOM tree
+    
+    ⬜ document.querySelector('h2')
+    
+    you will get First h2 of your page 
+
+    <h2>Lorem ipsum dolor sit amet 1.</h2>
+
+    ⬜ document.querySelector('#title')
+
+    you will get html element of this id
+
+    <h1 id="title" class="heading">DOM Learning <span style="display: none;">Test Text</span></h1>
+
+
+    ⬜ document.querySelector('.heading')
+
+    you will get the follow class name's html content
+
+    <h1 id="title" class="heading">DOM Learning <span style="display: none;">Test Text</span></h1>
+
+  Now Selecting ul's li
+
+  ⬜  document.querySelector('ul')
+
+  you will get the ul element
+
+   ⬜ const myul=document.querySelector('ul')
+
+   you will get the ul element
+
+  ⬜ myul.querySelector('li')
+  
+  you will get the li element
+
+   ⬜ const turngreen = myul.querySelector('li')
+
+  ⬜  turngreen.style.backgroundColor='green'
+
+   you will get backgroundColor
+
+   'green'
+
+  ⬜  turngreen.style.padding='10px'
+
+  you will get padding
+
+  '10px' 
+
+   ⬜ TurnGreen.innerText= 'five'
+
+   now this one change into five
+
+   you will see on your page 
+
+   'five'
+
+
+    2. querySelectorAll is used to select all elements from the DOM tree.
+
+        querySelectorAll give nodeList and we need to use forEach
+
+      ⬜ 1. document.querySelectorAll('li')
+
+      you will get
+
+       NodeList(3) [li, li, li]
+
+   ⬜ const tempLiList = document.querySelectorAll('li')
+
+   tempLiList.forEach((e)=> e.style.color='green')
+
+   you will see all li color changes into green
+
+
+
+    💫. now we will see getElementsByClassName
+
+    getElementsByClassName return HTMLCollection
+
+    and HTMLcollection not supported forEach, map etc.
+
+    ⬜ const temp= document.getElementsByClassName('list-item')
+
+    so wee need to convert it into array
+
+   ⬜ Array.from(temp)
+
+  ⬜ const myConvertedArray= Array.from(temp)
+
+    you will get
+
+    0: li.list-item1: li.list-item2: li.list-item3: li.list-itemlength: 4[[Prototype]]: Array(0)
+
+
+    now we can use forEach, map etc
+
+    myConvertedArray.forEach((e)=> e.style.color = 'orange')
+
+    you will see all li color changes into orange
+
+
+
+
+
+ -->
